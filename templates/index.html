@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}HTR - Home{% endblock %}
+{% block navtitle %}Handwritten Text Recognition{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <p class="text-center display-4">
+                Recognizing text from images
+            </p>
+            <!-- Write about recognizing text from images -->
+            <p class="text-center text-muted">
+                
+            </p>
+        </div>
+    </div>
+    <div class="row text-center h-100">
+        <div class="container card d-flex" style="height: 80px">
+            <div class="card-body row d-flex align-items-center">
+                    <div class="col-8 ">
+                        Click Recognize to try image to text conversion
+                    </div>
+                    <div class="col-4">
+                        <a class="btn btn-primary" href="{{ url_for('upload_page') }}">  Recognize  </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

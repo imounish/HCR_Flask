@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% block title %}HTR - Recognize{% endblock %} {%
+block navtitle %}Handwritten Text Recognition{% endblock %} {% block navitems %}
+<li class="nav-item text-white">
+	<a class="nav-link active text-warning" href="{{ url_for('index') }}">Back</a>
+</li>
+<li class="nav-item text-white">
+	<a class="nav-link active text-dark" href="{{ url_for('upload_page') }}"
+		>Clear</a
+	>
+</li>
+{% endblock %} 
+{% block body %}
+<div>
+	<div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <h1 class="text-center display-6">
+                Converting Handwritten Image to Text
+            </h1>
+        </div>
+    </div>
+
+	<div class="form-group row text-center h-100">
+		<div class="container card d-flex" style="height: 80px;">
+			<div class="card-body row d-flex align-items-center">
+				<form
+					method="POST"
+					enctype="multipart/form-data"
+					class="input-group mb-3"
+				>
+					<div class="col-sm-8">
+						<input
+							type="file"
+							class="form-control-file btn btn-light"
+							id="exampleFormControlFile1"
+							name="file"
+						/>
+					</div>
+					<div class="col-sm-4">
+						<input type="submit" class="btn btn-primary" value="Upload" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% if msg %}
+	<div class="alert alert-primary text-center display-6">{{ msg }}</div>
+	{% else %}
+	<div class="alert alert-primary text-center display-6">
+		Upload an Image containing Handwritten Text
+	</div>
+	{% endif %}
+	<div class="text-center" style="padding: 1%" style="margin: 3px;">
+		<h3>Result</h3>	
+	</div>
+	<!-- <h1>Processed Result</h1> -->
+
+	<div class="row text-center h-100">
+		<div class="container card d-flex" style="height: 200px;">
+			<div class="card-body row d-flex align-items-center">
+				<div class="col-sm-4">
+					{% if extracted_text %}
+					<p class="text-left font-weight-bold">
+						Extracted Text: 
+						<p class="font-italic">
+							{{ extracted_text[0] }}
+						</p>
+					</p>
+
+					<p class="text-left font-weight-bold">
+						Confidence: 
+						<p class="font-italic">
+							{{ extracted_text[1] }}
+						</p>
+					</p>
+					{% else %}
+					<p class="text-secondary">The extracted text will be displayed here</p>
+					{% endif %}
+				</div>
+				<div class="col-sm-8">
+					{% if img_src %}
+					<div class="text-center">
+						<img src="../static/data/test.png" alt="Uploaded Image" class="img-fluid rounded border border-primary" />
+						<p class="text-center text-secondary">
+							Uploaded Image
+						</p>
+					</div>
+					{% else %}
+						<p class="text-center text-secondary">
+							Uploaded Image will be displayed here
+						</p>
+					{% endif %}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
